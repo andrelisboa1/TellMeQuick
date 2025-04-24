@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body class="{{ mode }}-mode">
+    <a class="toggle-btn" href="/?mode={{ 'dark' if mode == 'light' else 'light' }}">
+        Toggle to {{ 'Dark' if mode == 'light' else 'Light' }} Mode
+    </a>
+    <h1>Welcome to TellMeQuick</h1>
+    <div>A small independent chatting service!</div>
+    <a href="/about?mode={{ mode }}">Go to About Page</a>
+</body>
+</html>

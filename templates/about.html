@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body class="{{ mode }}-mode">
+    <a class="toggle-btn" href="/about?mode={{ 'dark' if mode == 'light' else 'light' }}">
+        Toggle to {{ 'Dark' if mode == 'light' else 'Light' }} Mode
+    </a>
+    <h1>About TellMeQuick</h1>
+    <div>Powered by Python, Flask, SQLite3 and Ngrok</div>
+    <a href="/?mode={{ mode }}">Go to Home Page</a>
+</body>
+</html>
