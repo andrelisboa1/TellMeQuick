@@ -1,0 +1,1 @@
+nohup ngrok http 5000 > ngrok.log 2>&1 &
