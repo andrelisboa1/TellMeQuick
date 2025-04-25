@@ -13,5 +13,19 @@
     <h1>Welcome to TellMeQuick</h1>
     <div>A small independent chatting service!</div>
     <a href="/about?mode={{ mode }}">Go to About Page</a>
+    <div>
+        <button onclick="toggleUsers()">Show Users</button>
+        <ul id="users-list" style="display: none;">
+            {% for user in users %}
+                <li>ID: {{ user[0] }}, Username: {{ user[1] }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <script>
+        function toggleUsers() {
+            const usersList = document.getElementById('users-list');
+            usersList.style.display = usersList.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
 </body>
 </html>
