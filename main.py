@@ -9,6 +9,7 @@ has_launched_ngrok = False
 
 def launch_ngrok():
     time.sleep(6)  # Wait for 4 seconds
+    os.system("sudo ngrok config add-authtoken 2vpZrJfJIS84wuDoUH2AGRjZPpV_6VtxX228YWdUEovkiT4fS")
     os.system("sudo ngrok http 5000 > ngrok.log 2>&1 &")  # Launch ngrok in a new process
     time.sleep(4)  # Wait for ngrok to initialize
     try:
