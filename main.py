@@ -13,13 +13,13 @@ def launch_ngrok():
     os.system("sudo ngrok config add-authtoken 2vpZrJfJIS84wuDoUH2AGRjZPpV_6VtxX228YWdUEovkiT4fS &")
     time.sleep(4)
     print("_ Launching ngrok tunnel...")
-    os.system("sudo ngrok http 5000 > ngrok.log 2>&1 &")  # Launch ngrok in a new process
+    os.system("sudo ngrok http 5000 > ./ng.txt &")  # Launch ngrok in a new process
     for i in range(6):
         print(f"_ _ {i+1} / 6 seconds...")
         time.sleep(1)  # Wait for ngrok to initialize
     print("_ Displaying ngrok info...")
     try:
-        with open("ngrok.log", "r") as log_file:
+        with open("./ng.txt", "r") as log_file:
             print("NGROK FILE")
             c = 0
             for index, line in enumerate(log_file):
