@@ -9,7 +9,7 @@ has_launched_ngrok = False
 
 def launch_ngrok():
     time.sleep(4)  # Wait for 4 seconds
-    subprocess.Popen(["ngrok", "http", "5000"])  # Launch ngrok in a new process
+    subprocess.Popen(["sudo", "ngrok", "http", "5000"])  # Launch ngrok in a new process
     time.sleep(4)  # Wait for ngrok to initialize
     try:
         response = requests.get("http://localhost:4040/api/tunnels")  # Get ngrok tunnels
