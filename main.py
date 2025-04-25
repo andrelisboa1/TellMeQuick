@@ -21,8 +21,11 @@ def launch_ngrok():
     try:
         with open("ngrok.log", "r") as log_file:
             print("NGROK FILE")
+            c = 0
             for index, line in enumerate(log_file):
                 print(f"_ Line {i+1}\n{line}")
+                c += 1
+            print(f"(Line count: {c})")
     except Exception as e:
         print(f"Error reading ngrok log: {e}")
 
