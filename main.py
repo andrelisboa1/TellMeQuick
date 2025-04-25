@@ -2,13 +2,23 @@ from flask import Flask, render_template, request
 import threading
 import time
 import subprocess
+import requests
 
 app = Flask(__name__)
 has_launched_ngrok = False
 
 def launch_ngrok():
-    time.sleep(5)  # Wait for 5 seconds
+    time.sleep(4)  # Wait for 5 seconds
     subprocess.Popen(["ngrok", "http", "5000"])  # Launch ngrok in a new process
+    time.sleep(4)  # Wait for ngrok to initialize
+    try:
+        response = requests.get("http://localhost:4040/api/tunnels")  # Get ngrok tunnels
+        tunnels = response.json().get("tunnels", [])
+        public_url = next((tunnel["public_url"] for tunnel in tunnels if tunnel["proto"] == "https"), None)
+        if public_url:
+            print(f"Ngrok URL: {public_url}")
+    except Exception as e:
+        print(f"Error retrieving ngrok URL: {e}")
 
 @app.route("/")
 def home():
