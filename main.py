@@ -14,10 +14,7 @@ def launch_ngrok():
     try:
         with open("ngrok.log", "r") as log_file:
             for line in log_file:
-                if "https://" in line or "http://" in line:
-                    public_url = line.split(" ")[-1].strip()
-                    print(f"Ngrok URL: {public_url}")  # Display the public URL
-                    break
+                print(line)
     except Exception as e:
         print(f"Error reading ngrok log: {e}")
 
