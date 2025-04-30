@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Chat{% endblock %}
+
+{% block content %}
+<h1>Welcome to the Chatroom, {{ user }}!</h1>
+<div class="chat-div">
+    {% for message in messages %}
+        <p class="chat-message">
+            <strong>{{ "You" if message[0] == user_id else "cenoura456" }}:</strong>
+            {{ message[2] }}
+        </p>
+    {% endfor %}
+</div>
+<form action="/send_message" method="post" class="chat-form">
+    <input type="text" name="message" class="chat-input" placeholder="Type your message here..." required>
+    <button type="submit" class="button-with-icon"></button>
+</form>
+{% endblock %}

@@ -76,3 +76,36 @@ def reset_database(_connection: sql.Connection):
     # Rebuild the database
     db_init(_connection)
 
+def add_message(_connection: sql.Connection, src_user_id: int, dest_user_id: int, text_content: str):
+    """
+    Adds a message to the message table.
+    :param _connection: SQLite connection object
+    :param src_user_id: ID of the sender
+    :param dest_user_id: ID of the recipient
+    :param text_content: Content of the message
+    """
+    cursor = _connection.cursor()
+    cursor.execute("""
+        INSERT INTO message (src_user_id, dest_user_id, text_content)
+        VALUES (?, ?, ?)
+    """, (src_user_id, dest_user_id, text_content))
+    _connection.commit()
+
+def get_messages_between_users(_connection: sql.Connection, user1_id: int, user2_id: int):
+    """
+    Retrieves messages exchanged between two users.
+    :param _connection: SQLite connection object
+    :param user1_id: ID of the first user
+    :param user2_id: ID of the second user
+    :return: List of messages exchanged between the two users
+    """
+    cursor = _connection.cursor()
+    cursor.execute("""
+        SELECT src_user_id, dest_user_id, text_content
+        FROM message
+        WHERE (src_user_id = ? AND dest_user_id = ?)
+           OR (src_user_id = ? AND dest_user_id = ?)
+        ORDER BY id ASC
+    """, (user1_id, user2_id, user2_id, user1_id))
+    return cursor.fetchall()
+
